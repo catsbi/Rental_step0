@@ -15,7 +15,6 @@ import lombok.NoArgsConstructor;
 @Embeddable
 public class RentalCardNo implements Serializable {
 
-    @Id
     private String no;
 
     public static RentalCardNo createRentalCardNo() {
