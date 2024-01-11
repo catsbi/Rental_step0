@@ -61,11 +61,11 @@ public class RentalApplication {
 
     private static void showCardStatus(RentalCard card) {
         System.out.println(card.getMember().getName() + " 도서카드 ");
-        System.out.println("대여도서 연체상태 : " + card.getRentItemList().stream().map(RentalItem::isOverduded).collect(Collectors.toList()));
+        System.out.println("대여도서 연체상태 : " + card.getRentalItemList().stream().map(RentalItem::isOverduded).collect(Collectors.toList()));
         System.out.println("총연체료: " + card.getLateFee().getPoint());
         System.out.println("대여가능여부: " + card.getRentStatus());
         System.out.println("대여 목록");
-        System.out.println(card.getRentItemList().stream().map(m->m.getItem().getTitle()).collect(Collectors.toList()));
+        System.out.println(card.getRentalItemList().stream().map(m->m.getItem().getTitle()).collect(Collectors.toList()));
         System.out.println("반납목록");
         System.out.println(card.getReturnItemList().stream().map(m -> m.getRentalItem().getItem().getTitle()).collect(Collectors.toList()));
         System.out.println(" ");

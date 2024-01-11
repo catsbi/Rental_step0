@@ -7,11 +7,11 @@ import com.msa.rental.framework.web.dto.UserInputDTO;
 import java.util.List;
 
 public interface InquiryUsecase {
-    public RentalCardOutputDTO getRentalCard(UserInputDTO userInputDTO);
+    RentalCardOutputDTO getRentalCard(UserInputDTO userInputDTO);
 
-    public List<RentItemOutputDTO> getAllRentItem(UserInputDTO userInputDTO);
+    List<RentItemOutputDTO> getAllRentItem(UserInputDTO userInputDTO);
 
-    public List<ReturnItemOutputDTO> getAllReturnItem(UserInputDTO userInputDTO);
+    List<ReturnItemOutputDTO> getAllReturnItem(UserInputDTO userInputDTO);
 
 
 }

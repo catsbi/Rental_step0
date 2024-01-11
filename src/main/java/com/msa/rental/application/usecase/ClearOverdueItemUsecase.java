@@ -4,5 +4,5 @@ import com.msa.rental.framework.web.dto.ClearOverdueInfoDTO;
 import com.msa.rental.framework.web.dto.RentalResultOutputDTO;
 
 public interface ClearOverdueItemUsecase {
-    public RentalResultOutputDTO clearOverdue(ClearOverdueInfoDTO clearOverdueInfoDTO) throws Exception;
+    RentalResultOutputDTO clearOverdue(ClearOverdueInfoDTO clearOverdueInfoDTO) throws Exception;
 }

@@ -1,7 +1,10 @@
 package com.msa.rental.domain.model.vo;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.UUID;
+import javax.persistence.Embeddable;
+import javax.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -9,7 +12,10 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class RentalCardNo {
+@Embeddable
+public class RentalCardNo implements Serializable {
+
+    @Id
     private String no;
 
     public static RentalCardNo createRentalCardNo() {

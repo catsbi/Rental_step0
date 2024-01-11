@@ -28,7 +28,7 @@ public class InquiryInputPort implements InquiryUsecase {
     @Override
     public List<RentItemOutputDTO> getAllRentItem(UserInputDTO userInputDTO) {
         return rentalCardOutputPort.loadRentalCard(userInputDTO.getUserId())
-                .map(loadCard -> loadCard.getRentItemList().stream()
+                .map(loadCard -> loadCard.getRentalItemList().stream()
                         .map(RentItemOutputDTO::mapToDTO)
                         .collect(Collectors.toList()))
                 .orElseThrow(() -> new IllegalArgumentException("해당 카드가 존재하지 않습니다."));

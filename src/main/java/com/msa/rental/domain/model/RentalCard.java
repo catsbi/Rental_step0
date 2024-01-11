@@ -10,6 +10,10 @@ import java.time.LocalDate;
 import java.time.Period;
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.ElementCollection;
+import javax.persistence.Embedded;
+import javax.persistence.EmbeddedId;
+import javax.persistence.Entity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -17,12 +21,21 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Entity
 public class RentalCard {
+    @EmbeddedId
     private RentalCardNo rentalCardNo;
+
+    @Embedded
     private IDName member;
     private RentStatus rentStatus;
+
+    @Embedded
     private LateFee lateFee;
-    private List<RentalItem> rentItemList = new ArrayList<>();
+
+    @ElementCollection
+    private List<RentalItem> rentalItemList = new ArrayList<>();
+    @ElementCollection
     private List<ReturnItem> returnItemList = new ArrayList<>();
 
     public static RentalCard sample() {
@@ -36,11 +49,11 @@ public class RentalCard {
     }
 
     private void addRentalItem(RentalItem rentalItem) {
-        this.rentItemList.add(rentalItem);
+        this.rentalItemList.add(rentalItem);
     }
 
     private void removeRentalItem(RentalItem rentalItem) {
-        this.rentItemList.remove(rentalItem);
+        this.rentalItemList.remove(rentalItem);
     }
 
     private void addReturnItem(ReturnItem returnItem) {
@@ -73,13 +86,13 @@ public class RentalCard {
         if(rentStatus == RentStatus.RENT_UNAVAILABLE) {
             throw new IllegalStateException("대여불가 상태입니다.");
         }
-        if(this.rentItemList.size() >= 5) {
+        if(this.rentalItemList.size() >= 5) {
             throw new IllegalStateException("이미 5권을 대여했습니다.");
         }
     }
 
     public RentalCard returnItem(Item item, LocalDate returnDate) {
-        RentalItem rentalItem = rentItemList.stream()
+        RentalItem rentalItem = rentalItemList.stream()
                 .filter(i -> i.getItem().equals(item))
                 .findFirst().orElseThrow(IllegalArgumentException::new);
 
@@ -100,7 +113,7 @@ public class RentalCard {
     }
 
     public RentalCard overdueItem(Item item) {
-        RentalItem rentalItem = rentItemList.stream()
+        RentalItem rentalItem = rentalItemList.stream()
                 .filter(i -> i.getItem().equals(item))
                 .findFirst().orElseThrow(IllegalArgumentException::new);
         rentalItem.setOverduded(true);
@@ -113,7 +126,7 @@ public class RentalCard {
     }
 
     public long makeAvailableRental(long point) {
-        if(!rentItemList.isEmpty()) {
+        if(!rentalItemList.isEmpty()) {
             throw new IllegalStateException("모든 도서가 반납되어야 정지를 해제할 수 있습니다.");
         }
 

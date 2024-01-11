@@ -36,9 +36,9 @@ public class RentalCardOutputDTO {
         rentDTO.setMemberId(rental.getMember().getId());
         rentDTO.setMemberName(rental.getMember().getName());
         rentDTO.setRentStatus(rental.getRentStatus().toString());
-        rentDTO.setTotalRentalCnt((long) rental.getRentItemList().size());
+        rentDTO.setTotalRentalCnt((long) rental.getRentalItemList().size());
         rentDTO.setTotalReturnCnt((long) rental.getReturnItemList().size());
-        rentDTO.setTotalOverdudedCnt(rental.getRentItemList().stream().filter(RentalItem::isOverduded).count());
+        rentDTO.setTotalOverdudedCnt(rental.getRentalItemList().stream().filter(RentalItem::isOverduded).count());
         return rentDTO;
     }
 

@@ -19,7 +19,7 @@ public class RentalResultOutputDTO {
         RentalResultOutputDTO dto = new RentalResultOutputDTO();
         dto.setUserId(rental.getMember().getId());
         dto.setUserNm(rental.getMember().getName());
-        dto.setRentedCount(rental.getRentItemList().size());
+        dto.setRentedCount(rental.getRentalItemList().size());
         dto.setTotalLateFee(rental.getLateFee().getPoint());
 
         return dto;
