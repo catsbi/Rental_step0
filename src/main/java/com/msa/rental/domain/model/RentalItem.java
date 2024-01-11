@@ -13,7 +13,7 @@ public class RentalItem {
     private Item item;
     private LocalDate rentDate;
     private boolean overduded;
-    private LocalDate returnDate; // 반납 예정일
+    private LocalDate expireDate; // 반납 예정일
 
     public static RentalItem createRentalItem(Item item) {
         LocalDate now = LocalDate.now();
